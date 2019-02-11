@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 BUILD_NUMBER=$1
+env=$2
 serviceName="discovery_service"
 running=`docker ps | grep ${serviceName} | awk '{print $1}'`
 if [ ! -z "$running" ]; then
@@ -19,4 +20,4 @@ fi
 
 docker build -t ${serviceName}:v$BUILD_NUMBER .
 
-docker run --env env=uat -it -d -p 1111:1111 --name ${serviceName} ${serviceName}:v$BUILD_NUMBER
+docker run --env env=${env} -it -d -p 1111:1111 --name ${serviceName} ${serviceName}:v$BUILD_NUMBER
