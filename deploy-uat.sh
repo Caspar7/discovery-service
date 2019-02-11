@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 BUILD_NUMBER=$1
-serviceName="discoveryService"
+serviceName="discovery_service"
 running=`docker ps | grep ${serviceName} | awk '{print $1}'`
 if [ ! -z "$running" ]; then
     docker stop $running
