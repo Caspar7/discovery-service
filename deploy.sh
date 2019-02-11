@@ -18,6 +18,6 @@ if [ ! -z "$imagesid" ]; then
     docker rmi $imagesid -f
 fi
 
-docker build -t ${serviceName}:v$BUILD_NUMBER .
+docker build -t ${serviceName}:$BUILD_NUMBER .
 
 docker run --env env=${env} -it -d -p 1111:1111 --name ${serviceName} ${serviceName}:v$BUILD_NUMBER
