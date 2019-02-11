@@ -19,4 +19,4 @@ fi
 
 docker build -t ${serviceName}:v$BUILD_NUMBER .
 
-docker run -it -d -p 8888:8888 --name ${serviceName} ${serviceName}:v$BUILD_NUMBER --env env=uat
+docker run --env env=uat -it -d -p 1111:1111 --name ${serviceName} ${serviceName}:v$BUILD_NUMBER
