@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 serviceName="discovery-service"
 BUILD_NUMBER=$1
+eurekaHostIp=$2
+env=$3
 
 echo "stop and delete exist docker images and container..."
 running=`docker ps | grep ${serviceName} | awk '{print $1}'`
@@ -22,4 +24,4 @@ echo "load docker images ${serviceName}_${BUILD_NUMBER}.tar .."
 docker load -i ${serviceName}_${BUILD_NUMBER}.tar
 
 echo "run docker container..."
-docker run --env env=${env} --env eurekaServerZone=${eurekaServerZone} -it -d -p 1111:1111 --name ${serviceName} ${serviceName}:${BUILD_NUMBER}
+docker run --env env=${env} --env eurekaHostIp=${eurekaHostIp} -it -d -p 1111:1111 --name ${serviceName} ${serviceName}:${BUILD_NUMBER}
