@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 serviceName="discovery-service"
 BUILD_NUMBER=$1
-run_num=$2
 
 echo "stop and delete exist docker images and container..."
 running=`docker ps | grep ${serviceName} | awk '{print $1}'`
