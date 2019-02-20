@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-
-BUILD_NUMBER=$1
-env=$2
 serviceName="discovery-service"
+BUILD_NUMBER=$1
+run_num=$2
+
+echo "stop and delete exist docker images and container..."
 running=`docker ps | grep ${serviceName} | awk '{print $1}'`
 if [ ! -z "$running" ]; then
     docker stop $running
@@ -18,6 +19,8 @@ if [ ! -z "$imagesid" ]; then
     docker rmi $imagesid -f
 fi
 
-docker build -t ${serviceName}:$BUILD_NUMBER .
+echo "load docker images ${serviceName}_${BUILD_NUMBER}.tar .."
+docker load -i ${serviceName}_${BUILD_NUMBER}.tar
 
-docker run --env env=${env} -it -d -p 1111:1111 --name ${serviceName} ${serviceName}:$BUILD_NUMBER
+echo "run docker container..."
+docker run --env env=${env} -it -d -p 1111:1111 --name ${serviceName} ${serviceName}:${BUILD_NUMBER}
