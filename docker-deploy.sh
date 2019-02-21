@@ -24,4 +24,4 @@ echo "load docker images ${serviceName}_${BUILD_NUMBER}.tar .."
 docker load -i ${serviceName}_${BUILD_NUMBER}.tar
 
 echo "run docker container..."
-docker run --env env=${env} --env serverIp=${serverIp} -it -d -p 1111:1111 --name ${serviceName} ${serviceName}:${BUILD_NUMBER}
+docker run --env env=${env} --env serviceIp=${serviceIp} -it -d -p 1111:1111 --name ${serviceName} ${serviceName}:${BUILD_NUMBER}
