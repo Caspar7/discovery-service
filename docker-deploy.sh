@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 serviceName="discovery-service"
 BUILD_NUMBER=$1
-eurekaHostIp=$2
+serviceIp=$2
 env=$3
 
 echo "stop and delete exist docker images and container..."
